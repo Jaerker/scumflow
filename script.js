@@ -1,5 +1,9 @@
-let pokemons =  [];
+window.addEventListener(`DOMContentLoaded`, () => {
+    document.querySelector(`#pokeGenButton`).addEventListener(`click`, generatePokemon);
+})
 
+
+let pokemons =  [];
 fetchPokemons();
 
 async function fetchPokemons () {
@@ -24,4 +28,17 @@ async function fetchPokemonDetails(url){
     }
 
     return {e: {name:'Pokemon not found!'}};
+}
+
+async function generatePokemon () {
+    try {    
+        let randomNumber = Math.floor(Math.random()* pokemons.length) ;
+        let randomPokemon = await fetchPokemonDetails(pokemons[randomNumber].url);
+        renderPokemonCard(randomPokemon);
+        
+    } catch (error) {
+        console.log(`Error at generatePokemon()` + error);
+    }
+
+    
 }
