@@ -42,3 +42,7 @@ async function generatePokemon () {
 
     
 }
+
+function searchPokemons(){
+    console.log('något händer här');
+}
